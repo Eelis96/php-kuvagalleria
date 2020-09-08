@@ -1,20 +1,16 @@
 <?php
 if(isset($_POST['submit'])){
 
-    $kuvanNimi = htmlspecialchars($_POST['kuvan-nimi']);
-    $ottajaNimi = htmlspecialchars($_POST['ottajan-nimi']);
-    $kuva = $_FILES['tiedosto'];
-
-    if(empty($kuvanNimi) || empty($ottajaNimi) || empty($kuva)){
-        header('location:index.php?failed');
+    if(empty($_POST['kuvan-nimi']) || empty($_POST['ottajan-nimi']) || !isset($_FILES['tiedosto']) || $_FILES['tiedosto']['error'] == UPLOAD_ERR_NO_FILE){
+        header('location:index.php?failure');
     }else{
-        
+        include_once('functions.php');
 
+        saveToXml($_POST['kuvan-nimi'], $_POST['ottajan-nimi'], $_FILES['tiedosto']);
+
+        header('location:index.php?success');
     }
-
-
 
 }else{
     header('location:index.php');
 }
-?>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<lista>
+  <kuvantiedot>
+    <nimi>kuva</nimi>
+    <ottaja>eelis</ottaja>
+  </kuvantiedot>
+  <kuvantiedot>
+    <nimi>kuva 2</nimi>
+    <ottaja>soini</ottaja>
+  </kuvantiedot>
+</lista>
