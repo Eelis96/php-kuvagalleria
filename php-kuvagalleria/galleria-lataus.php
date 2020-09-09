@@ -4,7 +4,6 @@ if(isset($_POST['submit'])){
     if(empty($_POST['kuvan-nimi']) || empty($_POST['ottajan-nimi']) || !isset($_FILES['tiedosto']) || $_FILES['tiedosto']['error'] == UPLOAD_ERR_NO_FILE){
         header('location:index.php?error');
     }else{
-        //chmod 666 "nimi"
         $file = $_FILES['tiedosto'];
 
         $fileName = $file["name"];
