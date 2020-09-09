@@ -12,9 +12,9 @@
     </div>
 
     <?php
-        if(isset($_GET['failure'])){
+        if(isset($_GET['error'])){
             echo '<div class="alert alert-dismissible alert-danger">
-                    <strong>Täytä Kaikki Tyhjät Kentät!</strong>
+                    <strong>Jokin meni pieleen. Varmista, että kaikki kentät ovat täytetty!</strong>
                   </div>';
         }
 
@@ -22,6 +22,18 @@
             echo   '<div class="alert alert-dismissible alert-success">
                     <strong>Kiitos Kuvasta!</strong>
                 </div>';
+        }
+
+        if(isset($_GET['error=filetype'])){
+            echo '<div class="alert alert-dismissible alert-danger">
+                    <strong>Väärä tiedosto tyyppi!</strong>
+                  </div>';
+        }
+
+        if(isset($_GET['error=filesize'])){
+            echo '<div class="alert alert-dismissible alert-danger">
+                    <strong>Tiedosto on liian suuri!</strong>
+                  </div>';
         }
     ?>
 
@@ -31,11 +43,16 @@
                 $xml = simplexml_load_file('kuvat.xml');
                 
                 foreach($xml->kuvantiedot as $kuvantiedot){
-                echo '<a href="#"></a>' . '<h2>' . $kuvantiedot->nimi . '</h2>' . '<p>' . $kuvantiedot->ottaja . '</p>';
+                echo '<a href=""></a>
+                    <img src="' .$kuvantiedot->kuva. '" width="200px" height="200px" alt=""> 
+                    <h2>' .htmlspecialchars($kuvantiedot->nimi). '</h2>
+                    <p> '.htmlspecialchars($kuvantiedot->ottaja). '</p>';
                 } 
             ?>
         </div>
+    </div>
 
+    <div class="container">
         <div class="form-group">
             <form action="galleria-lataus.php" method="post" enctype="multipart/form-data">
                 <input type="text" name="kuvan-nimi" placeholder="Kuvan Nimi" class="form-control"><br>
